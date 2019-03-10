@@ -13,8 +13,6 @@ class TabLink {
     const tabs = this.tabs;
     const length = tabs.length;
     let i=0;
-    console.log(this.tab)
-    console.log(this.tabs);
 
     for (i; i<length; i++) {
       if (tabs[length-1].id === 'work') {
@@ -24,6 +22,7 @@ class TabLink {
         tabs[0].id = 'work';
         tabs[0].classList.add('active');
         tabs[0].style.display = 'inline-block';
+        TweenMax.from(tabs[0], .1, {x: 1500, opacity: 0});
         break;
       }
 
@@ -34,10 +33,10 @@ class TabLink {
         tabs[i+1].id = 'work';
         tabs[i+1].classList.add('active');
         tabs[i+1].style.display = 'inline-block';
+        TweenMax.from(tabs[i+1], .1, {x: 1500, opacity: 0});
         break;
       }
     }
-    //tabs.forEach( tab => TweenMax.from(tab, 1, {x: tab.width, ease: Power3.easeOut}));
   }
   leftButtonPress() {
     const tabs = this.tabs;
@@ -52,6 +51,7 @@ class TabLink {
         tabs[length-1].id = 'work';
         tabs[length-1].classList.add('active');
         tabs[length-1].style.display = 'inline-block';
+        TweenMax.from(tabs[length-1], .1, {x: -1500, opacity: 0});
         break;
       }
 
@@ -62,12 +62,13 @@ class TabLink {
         tabs[i-1].id = 'work';
         tabs[i-1].classList.add('active');
         tabs[i-1].style.display = 'inline-block';
+        TweenMax.from(tabs[i-1], .1, {x: -1500, opacity: 0});
         break;
       }
     }
-    //tabs.forEach( tab => TweenMax.from(tab, 1, {x: -tab.width, ease: Power3.easeOut}));
   }
 }
 
 const tabsSelect = document.querySelectorAll('.work');
 const tabs = tabsSelect.forEach(tab => new TabLink(tab));
+tabsSelect.forEach(tab => TweenMax.to(tab, .1, {opacity: 1, x:0}))
