@@ -22,7 +22,7 @@ class TabLink {
         tabs[0].id = 'work';
         tabs[0].classList.add('active');
         tabs[0].style.display = 'inline-block';
-        TweenMax.from(tabs[0], .1, {x: 1500, opacity: 0});
+        TweenMax.from(tabs[0].querySelector('.content'), .4, {x: 1500, opacity: 0});
         break;
       }
 
@@ -33,7 +33,7 @@ class TabLink {
         tabs[i+1].id = 'work';
         tabs[i+1].classList.add('active');
         tabs[i+1].style.display = 'inline-block';
-        TweenMax.from(tabs[i+1], .1, {x: 1500, opacity: 0});
+        TweenMax.from(tabs[i+1].querySelector('.content'), .4, {x: 1500, opacity: 0});
         break;
       }
     }
@@ -51,7 +51,7 @@ class TabLink {
         tabs[length-1].id = 'work';
         tabs[length-1].classList.add('active');
         tabs[length-1].style.display = 'inline-block';
-        TweenMax.from(tabs[length-1], .1, {x: -1500, opacity: 0});
+        TweenMax.from(tabs[length-1].querySelector('.content'), .4, {x: -1500, opacity: 0});
         break;
       }
 
@@ -62,7 +62,7 @@ class TabLink {
         tabs[i-1].id = 'work';
         tabs[i-1].classList.add('active');
         tabs[i-1].style.display = 'inline-block';
-        TweenMax.from(tabs[i-1], .1, {x: -1500, opacity: 0});
+        TweenMax.from(tabs[i-1].querySelector('.content'), .4, {x: -1500, opacity: 0});
         break;
       }
     }
@@ -71,4 +71,4 @@ class TabLink {
 
 const tabsSelect = document.querySelectorAll('.work');
 const tabs = tabsSelect.forEach(tab => new TabLink(tab));
-tabsSelect.forEach(tab => TweenMax.to(tab, .1, {opacity: 1, x:0}))
+tabsSelect.forEach(tab => TweenMax.to(tab.querySelector('.content'), .1, {opacity: 1, x:0}))
