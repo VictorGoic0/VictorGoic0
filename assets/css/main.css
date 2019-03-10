@@ -1676,3 +1676,7 @@ input, select, textarea {
   right: 25px;
   transform: translate(0, -50%);
 }
+
+#wrapper {
+	overflow: hidden;
+}
