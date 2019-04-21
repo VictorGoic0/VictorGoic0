@@ -1675,6 +1675,14 @@ input, select, textarea {
   .work .right-button {
     width: 50px;
     height: 50px;
+		top: 260px;
+  }
+}
+@media (min-width: 1000px) {
+  .work .left-button,
+  .work .right-button {
+    width: 50px;
+    height: 50px;
 		top: 430px;
   }
 	.work .left-button {
