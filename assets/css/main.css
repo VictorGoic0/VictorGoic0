@@ -1667,13 +1667,13 @@ input, select, textarea {
 }
 .work .left-button {
   top: 50%;
-  left: 25px;
+  left: -25px;
   transform: translate(0, -50%);
   z-index: 10;
 }
 .work .right-button {
   top: 50%;
-  right: 25px;
+  right: -25px;
   transform: translate(0, -50%);
 }
 
