@@ -1696,3 +1696,9 @@ input, select, textarea {
 #wrapper {
 	overflow: hidden;
 }
+
+#profile {
+	border-radius: 50%;
+	display: inline-block;
+	width: 200px;
+}
