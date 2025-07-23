@@ -1,22 +1,52 @@
-const form = document.getElementById("contactform");
-const formName = document.getElementById("name");
-const formEmail = document.getElementById("email");
-const formMessage = document.getElementById("message");
-
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const email = {
-    name: formName.value,
-    email: formEmail.value,
-    message: formMessage.value
-  };
-  axios
-    .post("https://goicocontactform.herokuapp.com/api/v1", email)
-    .then(res => {
-      alert("Email successfuly sent.");
-      location.reload();
-    })
-    .catch(err => {
-      alert(`Request failed with error ${err}`);
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(
+    'form[action="https://formspree.io/f/xpwlporo"]'
+  );
+  const responseDiv = document.getElementById("formspree-response");
+  if (!form) return;
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    responseDiv.textContent = "";
+    responseDiv.classList.remove(
+      "formspree-success",
+      "formspree-error",
+      "formspree-visible"
+    );
+    const formData = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        responseDiv.textContent = "Thank you! Your message has been sent.";
+        responseDiv.classList.add("formspree-success", "formspree-visible");
+      } else {
+        const data = await response.json();
+        const errorMsg =
+          data && data.errors && data.errors.length
+            ? data.errors.map((e) => e.message).join(", ")
+            : "Oops! There was a problem submitting your message.";
+        responseDiv.textContent = errorMsg;
+        responseDiv.classList.add("formspree-error", "formspree-visible");
+      }
+    } catch (error) {
+      responseDiv.textContent =
+        "Oops! There was a problem submitting your message.";
+      responseDiv.classList.add("formspree-error", "formspree-visible");
+    }
+  });
+  const resetBtn = document.getElementById("formspree-reset");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      form.reset();
+      responseDiv.textContent = "";
+      responseDiv.classList.remove(
+        "formspree-success",
+        "formspree-error",
+        "formspree-visible"
+      );
     });
+  }
 });

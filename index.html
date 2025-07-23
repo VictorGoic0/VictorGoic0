@@ -262,32 +262,33 @@
         <!-- Contact -->
         <article id="contact">
           <h2 class="major">Contact Me</h2>
-          <form id="contactform" role="form">
+          <form action="https://formspree.io/f/xpwlporo" method="POST">
             <div class="fields">
               <div class="field half">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" />
+                <input type="text" name="name" id="name" required />
               </div>
               <div class="field half">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" />
+                <input type="email" name="email" id="email" required />
               </div>
               <div class="field">
                 <label for="message">Message</label>
                 <textarea
-                  type="text"
                   name="message"
                   rows="4"
                   id="message"
+                  required
                 ></textarea>
               </div>
             </div>
             <ul class="actions">
               <li>
-                <input type="submit" value="Send Message" class="primary" />
+                <button type="submit" class="primary">Send Message</button>
               </li>
-              <li><input type="reset" value="Reset" /></li>
+              <li><button type="button" id="formspree-reset">Reset</button></li>
             </ul>
+            <div id="formspree-response" style="margin-top:1em;"></div>
           </form>
           <ul class="icons">
             <li>
