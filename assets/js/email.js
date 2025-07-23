@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector(
-    'form[action="https://formspree.io/f/xpwlporo"]'
-  );
+  const form = document.getElementById("formspree-form");
   const responseDiv = document.getElementById("formspree-response");
   if (!form) return;
   form.addEventListener("submit", async function (e) {
