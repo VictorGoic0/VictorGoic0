@@ -5,9 +5,36 @@ class TabLink {
     this.rightButton = this.tab.querySelector('.right-button');
     this.tabs = document.querySelectorAll('.work');
 
-
     this.leftButton.addEventListener('click', () => this.leftButtonPress());
     this.rightButton.addEventListener('click', () => this.rightButtonPress());
+    
+    // Load video for initially active slide
+    const activeTab = Array.from(this.tabs).find(t => t.id === 'work');
+    if (activeTab) {
+      this.handleVideoLoading(activeTab);
+    }
+  }
+  
+  handleVideoLoading(activeTab) {
+    // Pause and unload all videos to free memory
+    this.tabs.forEach(tab => {
+      const video = tab.querySelector('video');
+      if (video) {
+        video.pause();
+        if (tab !== activeTab) {
+          // Remove src to unload video from memory
+          video.removeAttribute('src');
+          video.load(); // Reset the video element
+        }
+      }
+    });
+    
+    // Load the active video if it hasn't been loaded yet
+    const activeVideo = activeTab.querySelector('video[data-src]');
+    if (activeVideo && !activeVideo.hasAttribute('src')) {
+      activeVideo.src = activeVideo.dataset.src;
+      activeVideo.load();
+    }
   }
   rightButtonPress() {
     const tabs = this.tabs;
@@ -23,6 +50,7 @@ class TabLink {
         tabs[0].classList.add('active');
         tabs[0].style.display = 'inline-block';
         TweenMax.from(tabs[0].querySelector('.content'), .4, {x: 1500, opacity: 0});
+        this.handleVideoLoading(tabs[0]);
         break;
       }
 
@@ -34,6 +62,7 @@ class TabLink {
         tabs[i+1].classList.add('active');
         tabs[i+1].style.display = 'inline-block';
         TweenMax.from(tabs[i+1].querySelector('.content'), .4, {x: 1500, opacity: 0});
+        this.handleVideoLoading(tabs[i+1]);
         break;
       }
     }
@@ -52,6 +81,7 @@ class TabLink {
         tabs[length-1].classList.add('active');
         tabs[length-1].style.display = 'inline-block';
         TweenMax.from(tabs[length-1].querySelector('.content'), .4, {x: -1500, opacity: 0});
+        this.handleVideoLoading(tabs[length-1]);
         break;
       }
 
@@ -63,6 +93,7 @@ class TabLink {
         tabs[i-1].classList.add('active');
         tabs[i-1].style.display = 'inline-block';
         TweenMax.from(tabs[i-1].querySelector('.content'), .4, {x: -1500, opacity: 0});
+        this.handleVideoLoading(tabs[i-1]);
         break;
       }
     }
