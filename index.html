@@ -86,7 +86,7 @@
               >
               was a solo side project I created to test out my skills with Cursor, AI Agents, Wispr Flow, Firebase, React, and Tailwind CSS.
               It is a collaborative canvas tool very similar to Figma!
-              I worked on this as part of the Gauntlet AI fellowship program. It features real-time database sync for user 
+              I built this as part of the Gauntlet AI fellowship program. It features real-time database sync for user 
               presence, object selection, cursor movement, and object dragging. The rest of the persisted data is handled by the Firebase store.
               <br>
               <br>
@@ -118,12 +118,13 @@
               Your browser doesn't support video playback.
             </video>
             <p>
-              Ever thought it'd be great to have a messaging/groupchat app for remote work? This project was a continuation of learning how to build using AI.
-              It's a react-native expo app designed with remote workers in mind. Messages of high priority are automatically marked in red. Dropdown actions in any chat include
-              conversation summarization, key decisions, action items, and semantic search (keyword weight + vector embedding comparison). Firebase for realtime chat functionality. 
+              Remote teams drown in chat messages, and things falling through the cracks is just an accepted fact of life. Goico SOS helps
+              by providing AI-powered summarization, key decision and action item extraction, and semantic search(keyword weight + vector embedding comparison).
+              It's a React Native Expo app built with remote workers in mind. Messages of high priority are automatically highlighted in red.
+              Real-time chat functionality is powered by Firebase!
               <br>
               <br>
-              I used gpt-4o-mini for all functionality, and openai text embedding 3 small for semantic search.
+              I used GPT-4o-mini for all LLM functionality, and OpenAI Text Embedding 3 Small for semantic search.
               <br>
               <a
                 href="https://github.com/VictorGoic0/Goico-SOS"
@@ -155,11 +156,11 @@
               That's our VideoAI Studio! With optional product/logo reference image upload, we implemented a multi-step video generation pipeline. Steps include checking for relevant
               asset images using our RAG pipeline, video and scene composition planning, storyboard image generation, parallel video chunk generation, final stitching, and an optional
               analysis + music track addition (depending on model used, some support sound out of the box). Post-generation processing also allows users to regenerate specific chunks
-              and restitch! The 3 of us finished this project in one week. My primary role was designing and implementing most of the orchestration pipeline.
+              and restitch! The three of us finished this project in one week. My primary role was designing and implementing most of the orchestration pipeline.
               <br>
               <br>
               This project was a great learning opportunity for combining all of our new skills up to this point. Models used include gpt-4o-mini for reasoning steps
-              (checking for relevant assets step, planning step), gpt-4-turbo for image analysis, flux-dev for image gen, flux-dev-controlnet for image gen WITH reference asset,
+              (checking for relevant assets step, planning step), gpt-4-turbo for image analysis, flux-dev for image gen, flux-dev-ControlNet for image gen with reference asset,
               and Google Veo 3.1 OR Minimax Hailuo 2.3 Fast for chunk generation. All deployed using Python FastAPI, and celery + redis task queues to scale multiple videos and/or
               multiple users.
               <br>
@@ -189,7 +190,7 @@
               <a href="https://math-tutoring-app.vercel.app" target="_blank"
                 >MathMentor AI</a
               >
-              is simple in concept, but powerful. It's a real world usecase of how we can superpower learning using AI. What if you could use an LLM to actually teach you concepts as a 
+              is simple in concept, but powerful. It's a real world use case of how we can superpower learning using AI. What if you could use an LLM to actually teach you concepts as a 
               personal tutor, rather than just spitting out answers? That's MathMentor AI, a personal math tutoring assistant for ANY level of mathematics. The trick is to provide
               our own state to the LLM to track problem attempts, user frustration, hint quantity, and hint strength, which can increase or reset depending on how stuck
               the student is. Simply type out a problem or upload an image of problems and see for yourself!
@@ -210,7 +211,7 @@
         <article class="work">
           <div class="left-button"><</div>
           <section class="content">
-            <h2 class="major">Spend Sense</h2>
+            <h2 class="major">SpendSense</h2>
             <video
               class="image main"
               controls
@@ -221,16 +222,16 @@
             </video>
             <p>
               <a href="https://spend-sense-goico.netlify.app" target="_blank"
-                >Spend Sense</a
+                >SpendSense</a
               >
-              is another powerful real world usecase of how to superpower existing applications using AI. In this case, I built an AI-powered recommendation engine. After
-              being granted permission, we first outline a "persona" based off of this user's spending, saving, and investment habits. We can then recommend relevant products
+              is another powerful real world use case of how to superpower existing applications using AI. In this case, I built an AI-powered recommendation engine. After
+              being granted permission, the system outlines a "persona" based off of a user's spending, saving, and investment habits. The system can then recommend relevant products
               OR learning resources that fit the exact usecase. A good saver might want to learn about investing. Someone with lots of subscriptions might want a subscriptions
               manager! 
               <br>
               <br>
-              Considering the reasoning required for accurate recommendations, I used gpt-4o-mini to power the recommendation engine. Assignment of persona was rules based
-              for MVP purposes. All deployed to a Python FastAPI backend using OpenAI's SDK.
+              Considering the reasoning required for accurate recommendations, I used gpt-4o-mini to power the recommendation engine. Persona assignment uses rule-based logic
+              for the MVP. All deployed to a Python FastAPI backend using OpenAI's SDK.
               <br>
               <a
                 href="https://github.com/VictorGoic0/SpendSense"
@@ -258,8 +259,8 @@
               <a href="https://demand-letter-generator.netlify.app" target="_blank"
                 >Generating Demand Letters</a
               >
-              can be a tedious process. What if we could automate only the boring parts? It turns out that at some particular law firms, the overall "structure" of the letter
-              doesn't really change much, it's more about swapping who the client is, and what are the relevant details of this case. What if we could use templates, uploaded knowledge
+              can be a tedious process. What if we could automate only the boring parts? It turns out that at many law firms, the overall "structure" of the letter
+              doesn't really change much. It's more about swapping who the client is, and what are the relevant details of this case. What if we could use templates, uploaded knowledge
               bases, and relevant client data to intelligently generate demand letters as many times and for as many people as needed, within seconds? That's the gist of Demand Letter
               Generator. Simply upload relevant assets (legal doc PDFs), create the required template(s), and generate a demand letter. Post-generation letters are editable
               and immediately exportable to .docx format.
@@ -294,8 +295,8 @@
                 >Generating email ads</a
               >
               can be a tedious process. Coming up with original copy and assets is a unique and creative effort, but iterating on slightly different versions for A-B testing
-              can be a real pain. What if we only remove the annoying, repetitive, final stitching together, using AI? Email Ad Generator is simple in concept. Depending on
-              user type, users in a firm can either review ad campaigns or create them. Users upload logos, banners, descriptions, social media URLs, etc. We use a combination
+              can be a real pain. What if we could automate only the tedious final assembly step using AI? Email Ad Generator is simple in concept. Depending on
+              user role, users in a firm can either review ad campaigns or create them. Users upload logos, banners, descriptions, social media URLs, etc. We use a combination
               of rules-based categorization, LLM correction, and if needed, a manual user override step to make sure everything is in the right place. Then our next LLM call
               just needs to stitch it all together. Boom! Proof of concept generated.
               <br>
@@ -328,9 +329,9 @@
               <a href="https://rapid-photo-upload.netlify.app" target="_blank"
                 >Rapid Photo Upload</a
               >
-              was a fun exercise on trying out Java for the first time. The goal was to be able to upload 100 images concurrently, with no front-end lag, within 5 minutes.
-              Final version managed this in more like 10 seconds! I used websockets for real-time progress tracking, and S3 for file upload and storage. The web app was built
-              using React, and the mobile app was built using react-native.
+              was a fun exercise in learning Java for the first time. The goal was to be able to upload 100 images concurrently, with no front-end lag, within 5 minutes.
+              Final version managed this in more like 10 seconds! I used Spring Boot for the backend, WebSockets for real-time progress tracking, and S3 for file upload and storage. The web app was built
+              using React, and the mobile app was built using React Native.
               <br>
               <br>
               <a
@@ -363,7 +364,7 @@
               list that they can access at any time. They can generate reminders
               for when to take these pills, and they can write diary entries to keep track of
               how they are interacting with the medication and how it makes them
-              feel.
+              feel. We built the frontend with React and Redux, used Express.js for our main API with PostgreSQL, and Flask for our machine learning API that handled image recognition and data scraping.
               <br>
               (No longer live for now)
               <br>
@@ -389,11 +390,11 @@
             /></span>
             <p>
               I started
-              <a href="https://insta-clone-2.netlify.app/" target="_blank"
+              <a href="https://insta-clone-2.netlify.app" target="_blank"
                 >this project</a
               >
-              as part of a four day Intermediate React unit. This week was
-              probably the most cruicial for increasing my understanding of
+              as part of a four-day Intermediate React unit. This week was
+              probably the most crucial for increasing my understanding of
               lifecycle methods. I later came back to this project and
               refactored it to use redux and interact with an actual backend,
               which I built myself. The backend was originally deployed to
@@ -417,35 +418,6 @@
           </section>
           <div class="right-button">></div>
         </article>
-
-        <!-- <article class="work">
-          <div class="left-button"><</div>
-          <section class="content">
-            <h2 class="major">My Top 9 Landing Page</h2>
-            <span class="image main"
-              ><img src="images/MyTop9.png" alt="MyTop9"
-            /></span>
-            <p>
-              I created
-              <a
-                href="https://my-top-9-goico.netlify.app"
-                target="_blank"
-                >this project</a
-              >
-              as a part of Build Week, when I worked with other developers in a
-              team to develop a project based on a prompt. My role was to create
-              the landing page which links to the react application via a sign
-              in button.
-              <br>
-              <a
-                href="https://github.com/my-top-9/UI-Victor-Goico"
-                target="_blank"
-                >GitHub</a
-              >
-            </p>
-          </section>
-          <div class="right-button">></div>
-        </article> -->
 
         <!-- About -->
         <article id="about">
