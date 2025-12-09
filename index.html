@@ -158,7 +158,10 @@
               and restitch! The 3 of us finished this project in one week. My primary role was designing and implementing most of the orchestration pipeline.
               <br>
               <br>
-              This project was a great learning opportunity for combining all our skills up to this point.
+              This project was a great learning opportunity for combining all of our new skills up to this point. Models used include gpt-4o-mini for reasoning steps
+              (checking for relevant assets step, planning step), gpt-4-turbo for image analysis, flux-dev for image gen, flux-dev-controlnet for image gen WITH reference asset,
+              and Google Veo 3.1 OR Minimax Hailuo 2.3 Fast for chunk generation. All deployed using Python FastAPI, and celery + redis task queues to scale multiple videos and/or
+              multiple users.
               <br>
               <a
                 href="https://github.com/Kenji11/aivideo"
@@ -173,7 +176,7 @@
         <article class="work">
           <div class="left-button"><</div>
           <section class="content">
-            <h2 class="major">Math Tutor AI</h2>
+            <h2 class="major">MathMentor AI</h2>
             <video
               class="image main"
               controls
@@ -184,15 +187,15 @@
             </video>
             <p>
               <a href="https://math-tutoring-app.vercel.app" target="_blank"
-                >This project</a
+                >MathMentor AI</a
               >
-              was a solo side project I created to test out my skills with Cursor, AI Agents, Wispr Flow, Firebase, React, and Tailwind CSS.
-              It is a collaborative canvas tool very similar to Figma!
-              I worked on this as part of the Gauntlet AI fellowship program. It features real-time database sync for user 
-              presence, object selection, cursor movement, and object dragging. The rest of the persisted data is handled by the Firebase store.
+              is simple in concept, but powerful. It's a real world usecase of how we can superpower learning using AI. What if you could use an LLM to actually teach you concepts as a 
+              personal tutor, rather than just spitting out answers? That's MathMentor AI, a personal math tutoring assistant for ANY level of mathematics. The trick is to provide
+              our own state to the LLM to track problem attempts, user frustration, hint quantity, and hint strength, which can increase or reset depending on how stuck
+              the student is. Simply type out a problem or upload an image of problems and see for yourself!
               <br>
               <br>
-              I also used this project to learn how to build my first agent. It's very basic, using the openAI SDK and GPT-4-Turbo to assist with object creation and even login forms!
+              I used GPT-4-Turbo and the Vercel AI SDK to power my tutoring agent. React, tailwind, and a next.js serverless API deployed on Vercel. 
               <br>
               <a
                 href="https://github.com/VictorGoic0/Math-Tutoring-App"
