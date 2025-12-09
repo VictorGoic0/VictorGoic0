@@ -432,8 +432,10 @@ body {
 
 .btn-primary,
 .btn-secondary {
-    display: block;
-    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px var(--spacing-md);
     border-radius: var(--border-radius);
     font-weight: 600;
     text-decoration: none;
@@ -442,8 +444,10 @@ body {
     transition: var(--transition);
     font-family: var(--font-primary);
     font-size: var(--font-size-base);
-    text-align: center;
+    text-align: center !important;
     line-height: 1.5;
+    width: 100%;
+    min-height: 48px;
 }
 
 .btn-primary {
@@ -562,7 +566,7 @@ body {
 
 .projects-carousel {
     position: relative;
-    padding: var(--spacing-md) 0;
+    padding: calc(var(--spacing-md) + 20px) 0 var(--spacing-md) 0;
 }
 
 .project-card {
@@ -574,6 +578,8 @@ body {
     display: flex;
     flex-direction: column;
     border: 2px solid transparent;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .project-card:hover {
@@ -608,11 +614,11 @@ body {
     padding: 0 var(--spacing-md);
     margin-bottom: var(--spacing-sm);
     font-size: 0.875rem;
+    flex-grow: 1;
 }
 
 .project-card .tech-badges {
     padding: 0 var(--spacing-md);
-    margin-bottom: auto;
     margin-top: var(--spacing-sm);
 }
 
@@ -622,12 +628,11 @@ body {
 }
 
 .project-card .btn-secondary {
-    margin: var(--spacing-md) var(--spacing-md) var(--spacing-md);
+    margin: auto var(--spacing-md) var(--spacing-md) var(--spacing-md);
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.875rem;
-    width: calc(100% - 2 * var(--spacing-md));
+    width: auto;
     text-align: center;
-    display: block;
 }
 
 /* Swiper Customization */
