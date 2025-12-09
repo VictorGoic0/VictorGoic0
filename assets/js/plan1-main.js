@@ -21,11 +21,27 @@ class PortfolioApp {
         this.setupLazyVideos();
         this.initSwiper();
         this.setupFormHandler();
+        this.setupFeaturedCardClicks();
         
         // Remove preload class after a short delay
         setTimeout(() => {
             document.body.classList.remove('is-preload');
         }, 100);
+    }
+    
+    // Make entire featured card clickable
+    setupFeaturedCardClicks() {
+        document.querySelectorAll('.featured-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't trigger if clicking the button directly (it has its own handler)
+                if (!e.target.classList.contains('view-details')) {
+                    const button = card.querySelector('.view-details');
+                    if (button) {
+                        button.click();
+                    }
+                }
+            });
+        });
     }
     
     // ========================================================================
