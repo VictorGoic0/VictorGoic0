@@ -230,7 +230,7 @@
               <br>
               <br>
               Considering the reasoning required for accurate recommendations, I used gpt-4o-mini to power the recommendation engine. Assignment of persona was rules based
-              for MVP purposes.
+              for MVP purposes. All deployed to a Python FastAPI backend using OpenAI's SDK.
               <br>
               <a
                 href="https://github.com/VictorGoic0/SpendSense"
@@ -256,15 +256,16 @@
             </video>
             <p>
               <a href="https://demand-letter-generator.netlify.app" target="_blank"
-                >This project</a
+                >Generating Demand Letters</a
               >
-              was a solo side project I created to test out my skills with Cursor, AI Agents, Wispr Flow, Firebase, React, and Tailwind CSS.
-              It is a collaborative canvas tool very similar to Figma!
-              I worked on this as part of the Gauntlet AI fellowship program. It features real-time database sync for user 
-              presence, object selection, cursor movement, and object dragging. The rest of the persisted data is handled by the Firebase store.
+              can be a tedious process. What if we could automate only the boring parts? It turns out that at some particular law firms, the overall "structure" of the letter
+              doesn't really change much, it's more about swapping who the client is, and what are the relevant details of this case. What if we could use templates, uploaded knowledge
+              bases, and relevant client data to intelligently generate demand letters as many times and for as many people as needed, within seconds? That's the gist of Demand Letter
+              Generator. Simply upload relevant assets (legal doc PDFs), create the required template(s), and generate a demand letter. Post-generation letters are editable
+              and immediately exportable to .docx format.
               <br>
               <br>
-              I also used this project to learn how to build my first agent. It's very basic, using the openAI SDK and GPT-4-Turbo to assist with object creation and even login forms!
+              I used GPT-4 for the letter generation step. Deployed to a FastAPI backend using OpenAI's SDK.
               <br>
               <a
                 href="https://github.com/VictorGoic0/Demand-Letter-Gen"
@@ -290,15 +291,16 @@
             </video>
             <p>
               <a href="https://email-advertising-generator.netlify.app" target="_blank"
-                >This project</a
+                >Generating email ads</a
               >
-              was a solo side project I created to test out my skills with Cursor, AI Agents, Wispr Flow, Firebase, React, and Tailwind CSS.
-              It is a collaborative canvas tool very similar to Figma!
-              I worked on this as part of the Gauntlet AI fellowship program. It features real-time database sync for user 
-              presence, object selection, cursor movement, and object dragging. The rest of the persisted data is handled by the Firebase store.
+              can be a tedious process. Coming up with original copy and assets is a unique and creative effort, but iterating on slightly different versions for A-B testing
+              can be a real pain. What if we only remove the annoying, repetitive, final stitching together, using AI? Email Ad Generator is simple in concept. Depending on
+              user type, users in a firm can either review ad campaigns or create them. Users upload logos, banners, descriptions, social media URLs, etc. We use a combination
+              of rules-based categorization, LLM correction, and if needed, a manual user override step to make sure everything is in the right place. Then our next LLM call
+              just needs to stitch it all together. Boom! Proof of concept generated.
               <br>
               <br>
-              I also used this project to learn how to build my first agent. It's very basic, using the openAI SDK and GPT-4-Turbo to assist with object creation and even login forms!
+              I used GPT-3.5-Turbo for asset categorization, and GPT-4 for the email ad generation itself. Deployed to a Python FastAPI backend using OpenAI's SDK.
               <br>
               <a
                 href="https://github.com/VictorGoic0/Email-Advertising-App"
