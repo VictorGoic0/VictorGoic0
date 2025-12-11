@@ -237,7 +237,7 @@ class ModalManager {
 
     // Build modal content
     const mediaHtml = project.video
-      ? `<video controls src="${project.video}"></video>`
+      ? `<video controls playsinline preload="metadata" src="${project.video}"></video>`
       : `<img src="${project.image}" alt="${project.title}" />`;
 
     const techBadgesHtml = project.tech
