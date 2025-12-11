@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/plan1.css" />
+    <link rel="stylesheet" href="assets/css/email.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"/></noscript>
 </head>
@@ -354,7 +355,7 @@
                         </li>
                     </ul>
                 </div>
-                <form action="https://formspree.io/f/xpwlporo" method="POST" id="contact-form">
+                <form action="https://formspree.io/f/xpwlporo" method="POST" id="formspree-form">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" required />
@@ -368,7 +369,8 @@
                         <textarea name="message" rows="5" id="message" required></textarea>
                     </div>
                     <button type="submit" class="btn-primary">Send Message</button>
-                    <div id="form-response"></div>
+                    <button type="button" id="formspree-reset" class="btn-secondary">Reset</button>
+                    <div id="formspree-response"></div>
                 </form>
             </div>
         </div>
@@ -397,5 +399,6 @@
     <script src="assets/js/plan1-particles.js"></script>
     <script src="assets/js/plan1-main.js"></script>
     <script src="assets/js/plan1-modals.js"></script>
+    <script src="assets/js/email.js"></script>
 </body>
 </html>
