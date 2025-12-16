@@ -5,11 +5,11 @@
 
 const projectData = {
   "goico-sos": {
-    title: "Goico SOS",
+    title: "SOS",
     video:
       "https://github.com/VictorGoic0/VictorGoic0/releases/download/v1.0.1/GoicoSOS.mp4",
     description: `
-            <p>Remote teams drown in chat messages, and things falling through the cracks is just an accepted fact of life. Goico SOS helps by providing AI-powered summarization, key decision and action item extraction, and semantic search (keyword weight + vector embedding comparison). It's a React Native Expo app built with remote workers in mind.</p>
+            <p>Remote teams drown in chat messages, and things falling through the cracks is just an accepted fact of life. SOS helps by providing AI-powered summarization, key decision and action item extraction, and semantic search (keyword weight + vector embedding comparison). It's a React Native Expo app built with remote workers in mind.</p>
             <p>Messages of high priority are automatically highlighted in red, ensuring critical communications never get lost in the noise. Real-time chat functionality is powered by Firebase, providing instant synchronization across all team members.</p>
             <p>I used <code>GPT-4o-mini</code> for all LLM functionality, and <code>OpenAI Text Embedding 3 Small</code> for semantic search capabilities, allowing users to find relevant messages even when they don't remember the exact keywords used.</p>
         `,
@@ -58,7 +58,7 @@ const projectData = {
     live: "https://videoai.gauntlet3.com",
   },
   "goicos-artist": {
-    title: "Goico's Artist",
+    title: "Black Canvas",
     video:
       "https://github.com/VictorGoic0/VictorGoic0/releases/download/v1.0.1/GoicosArtist.mp4",
     description: `
