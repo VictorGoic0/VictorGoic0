@@ -733,6 +733,10 @@ body {
     border-color: var(--color-accent);
 }
 
+#contact form #formspree-reset {
+    margin-top: var(--spacing-sm);
+}
+
 #form-response {
     margin-top: var(--spacing-md);
     padding: var(--spacing-sm);
