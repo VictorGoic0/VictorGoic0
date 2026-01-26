@@ -215,7 +215,7 @@ class ModalManager {
     document.querySelectorAll(".view-details").forEach((button) => {
       button.addEventListener("click", (e) => {
         const projectId = e.target.dataset.project;
-        this.openModal(projectId);
+        this.openModal(projectId, true); // true = update URL
       });
     });
 
@@ -231,9 +231,56 @@ class ModalManager {
     });
   }
 
-  openModal(projectId) {
+  getProjectSection(projectId) {
+    // Check if project is in featured section
+    const featuredCard = document.querySelector(
+      `#featured .featured-card[data-project="${projectId}"]`
+    );
+    if (featuredCard) {
+      return "featured";
+    }
+
+    // Check if project is in projects section
+    const projectCard = document.querySelector(
+      `#projects .project-card[data-project="${projectId}"]`
+    );
+    if (projectCard) {
+      return "projects";
+    }
+
+    // Default to featured if not found
+    return "featured";
+  }
+
+  updateURLWithProject(projectId) {
+    const section = this.getProjectSection(projectId);
+    const hash = `#${section}`;
+    const url = new URL(window.location);
+    url.searchParams.set("project", projectId);
+    url.hash = hash;
+    
+    if (history.pushState) {
+      history.pushState(null, null, url.pathname + url.search + url.hash);
+    }
+  }
+
+  removeProjectFromURL() {
+    const url = new URL(window.location);
+    url.searchParams.delete("project");
+    
+    if (history.pushState) {
+      history.pushState(null, null, url.pathname + url.search + url.hash);
+    }
+  }
+
+  openModal(projectId, updateURL = false) {
     const project = projectData[projectId];
     if (!project) return;
+
+    // Update URL if requested (when clicked by user)
+    if (updateURL) {
+      this.updateURLWithProject(projectId);
+    }
 
     // Build modal content
     const mediaHtml = project.video
@@ -287,6 +334,9 @@ class ModalManager {
     this.modal.classList.remove("active");
     document.body.style.overflow = "";
 
+    // Remove project from URL when closing
+    this.removeProjectFromURL();
+
     // Stop any videos playing
     const videos = this.modalBody.querySelectorAll("video");
     videos.forEach((video) => {
@@ -297,10 +347,17 @@ class ModalManager {
 }
 
 // Initialize when DOM is loaded
+// Make it globally accessible for other scripts
+window.modalManagerInstance = null;
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
-    new ModalManager();
+    window.modalManagerInstance = new ModalManager();
   });
 } else {
-  new ModalManager();
+  window.modalManagerInstance = new ModalManager();
+}
+
+// Export for use in other scripts
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { ModalManager, modalManagerInstance: window.modalManagerInstance };
 }

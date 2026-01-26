@@ -22,6 +22,7 @@ class PortfolioApp {
         this.initSwiper();
         this.setupFormHandler();
         this.setupFeaturedCardClicks();
+        this.handleInitialHash();
         
         // Remove preload class after a short delay
         setTimeout(() => {
@@ -54,22 +55,19 @@ class PortfolioApp {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    // Close mobile menu if open
-                    this.navLinksContainer.classList.remove('active');
-                    this.navToggle.classList.remove('active');
-                    
-                    // Smooth scroll to section
-                    const offsetTop = targetSection.offsetTop - 70; // Account for fixed nav
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
+                this.scrollToSection(targetId);
             });
         });
+        
+        // Handle hero CTA link
+        const heroCta = document.querySelector('.hero-cta');
+        if (heroCta) {
+            heroCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = heroCta.getAttribute('href');
+                this.scrollToSection(targetId);
+            });
+        }
         
         // Mobile menu toggle
         if (this.navToggle) {
@@ -86,6 +84,107 @@ class PortfolioApp {
         
         // Initial scroll check
         this.handleScroll();
+    }
+    
+    scrollToSection(targetId) {
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            // Close mobile menu if open
+            this.navLinksContainer.classList.remove('active');
+            this.navToggle.classList.remove('active');
+            
+            // Update URL hash without scroll jump using history.pushState
+            if (history.pushState) {
+                history.pushState(null, null, targetId);
+            }
+            
+            // Smooth scroll to section
+            const offsetTop = targetSection.offsetTop - 70; // Account for fixed nav
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    }
+    
+    handleInitialHash() {
+        // Check for both hash and query params
+        // Query params should be in window.location.search (before hash)
+        // But also check hash fragment for backwards compatibility (old format: #section?project=id)
+        const urlParams = new URLSearchParams(window.location.search);
+        let projectId = urlParams.get('project');
+        let hash = window.location.hash;
+        
+        // Backwards compatibility: check if query params are in hash fragment
+        // Format: #section?project=id
+        if (!projectId && hash && hash.includes('?')) {
+            const hashParts = hash.split('?');
+            hash = hashParts[0]; // Extract just the section hash
+            const hashQueryParams = new URLSearchParams(hashParts[1]);
+            projectId = hashQueryParams.get('project');
+        }
+        
+        // If there's a hash, scroll to that section first
+        if (hash) {
+            // Wait for page to fully load and animations to initialize
+            setTimeout(() => {
+                const targetSection = document.querySelector(hash);
+                
+                if (targetSection) {
+                    // Smooth scroll to section
+                    const offsetTop = targetSection.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    // If there's also a project query param, open the modal after scrolling
+                    if (projectId) {
+                        // Wait for scroll to complete, then open modal
+                        setTimeout(() => {
+                            this.openProjectModal(projectId);
+                        }, 500); // Adjust timing based on scroll duration
+                    }
+                }
+            }, 150);
+        } else if (projectId) {
+            // If there's a project param but no hash, default to featured section
+            setTimeout(() => {
+                const featuredSection = document.querySelector('#featured');
+                if (featuredSection) {
+                    const offsetTop = featuredSection.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    setTimeout(() => {
+                        this.openProjectModal(projectId);
+                    }, 500);
+                }
+            }, 150);
+        }
+    }
+    
+    openProjectModal(projectId) {
+        // Access modal manager instance from global scope
+        if (window.modalManagerInstance) {
+            window.modalManagerInstance.openModal(projectId, false); // false = don't update URL (already in URL)
+        } else {
+            // Fallback: wait a bit for modal manager to initialize, then try again
+            setTimeout(() => {
+                if (window.modalManagerInstance) {
+                    window.modalManagerInstance.openModal(projectId, false);
+                } else {
+                    // Last resort: find the button and click it
+                    const viewDetailsButton = document.querySelector(`.view-details[data-project="${projectId}"]`);
+                    if (viewDetailsButton) {
+                        viewDetailsButton.click();
+                    }
+                }
+            }, 100);
+        }
     }
     
     handleScroll() {
@@ -156,6 +255,24 @@ class PortfolioApp {
         if (aboutGrid) {
             observer.observe(aboutGrid);
         }
+        
+        // Check for elements already in viewport (e.g., when page loads with hash)
+        // This ensures animations trigger even if elements are already visible
+        const checkInitialVisibility = () => {
+            document.querySelectorAll('.featured-card, .about-grid').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                if (isVisible && !element.classList.contains('visible')) {
+                    // Small delay to ensure smooth animation
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, 100);
+                }
+            });
+        };
+        
+        // Check after a short delay to account for any initial scroll
+        setTimeout(checkInitialVisibility, 300);
     }
     
     // ========================================================================
