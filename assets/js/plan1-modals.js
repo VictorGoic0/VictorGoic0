@@ -31,7 +31,7 @@ const projectData = {
     description: `
             <p>Imagine if a single, simple (or long and complex as needed!) prompt generated TV-ready video advertisements within 3-4 minutes. That's our VideoAI Studio! With optional product/logo reference image upload, we implemented a multi-step video generation pipeline.</p>
             <p>Steps include checking for relevant asset images using our RAG pipeline, video and scene composition planning, storyboard image generation, parallel video chunk generation, final stitching, and an optional analysis + music track addition (depending on model used, some support sound out of the box).</p>
-            <p>Post-generation processing also allows users to regenerate specific chunks and restitch! The three of us finished this project in one week. My primary role was designing and implementing most of the orchestration pipeline.</p>
+            <p>Post-generation processing also allows users to regenerate specific chunks and restitch! The three of us finished this project in one week. I designed and implemented the planning, orchestration, RAG pipelines, and chunk generation.</p>
             <p>This project was a great learning opportunity for combining all of our new skills up to this point. Models used include <code>GPT-4o-mini</code> for reasoning steps (checking for relevant assets step, planning step), <code>GPT-4 Turbo</code> for image analysis, <code>Flux Dev</code> for image gen, <code>Flux Dev-ControlNet</code> for image gen with reference asset, and <code>Google Veo 3.1</code> OR <code>Minimax Hailuo 2.3 Fast</code> for chunk generation. All deployed using Python FastAPI, and celery + redis task queues to scale multiple videos and/or multiple users.</p>
         `,
     tech: [
@@ -234,7 +234,7 @@ class ModalManager {
   getProjectSection(projectId) {
     // Check if project is in featured section
     const featuredCard = document.querySelector(
-      `#featured .featured-card[data-project="${projectId}"]`
+      `#featured .featured-card[data-project="${projectId}"]`,
     );
     if (featuredCard) {
       return "featured";
@@ -242,7 +242,7 @@ class ModalManager {
 
     // Check if project is in projects section
     const projectCard = document.querySelector(
-      `#projects .project-card[data-project="${projectId}"]`
+      `#projects .project-card[data-project="${projectId}"]`,
     );
     if (projectCard) {
       return "projects";
@@ -258,7 +258,7 @@ class ModalManager {
     const url = new URL(window.location);
     url.searchParams.set("project", projectId);
     url.hash = hash;
-    
+
     if (history.pushState) {
       history.pushState(null, null, url.pathname + url.search + url.hash);
     }
@@ -267,7 +267,7 @@ class ModalManager {
   removeProjectFromURL() {
     const url = new URL(window.location);
     url.searchParams.delete("project");
-    
+
     if (history.pushState) {
       history.pushState(null, null, url.pathname + url.search + url.hash);
     }
@@ -359,5 +359,8 @@ if (document.readyState === "loading") {
 
 // Export for use in other scripts
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { ModalManager, modalManagerInstance: window.modalManagerInstance };
+  module.exports = {
+    ModalManager,
+    modalManagerInstance: window.modalManagerInstance,
+  };
 }
