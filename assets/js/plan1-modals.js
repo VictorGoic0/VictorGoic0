@@ -177,6 +177,45 @@ const projectData = {
     githubBackend: "https://github.com/labs12-rxid/Backend",
     live: null,
   },
+  "electron-recorder": {
+    title: "ClipForge",
+    image: "thumbnails/goico-sos-thumbnail.png",
+    description: `
+            <p>The Gauntlet gave us half a week with no prompt. No spec, no team assignment. Just: build something. I decided to build a desktop video editor from scratch.</p>
+            <p>ClipForge is an Electron app wrapping FFmpeg under the hood. You can record your screen, record your webcam, or do both simultaneously with the webcam running as a picture-in-picture overlay on top of your screen capture. From there, a multi-track timeline lets you import clips, trim them with drag handles, split at the playhead, and arrange across tracks before exporting.</p>
+            <p>Three days. React for the UI, Vite for the build pipeline, FFmpeg for all the actual video processing, and Electron to tie it together into a native desktop app that runs on Windows, macOS, and Linux. The hardest part was getting the IPC layer between the Electron main process and the renderer right, and bundling the FFmpeg binaries cleanly for each platform.</p>
+        `,
+    tech: ["Electron", "React", "FFmpeg", "Vite"],
+    techTypes: ["other", "frontend", "backend", "other"],
+    github: "https://github.com/VictorGoic0/Recording-Electron-App",
+    live: null,
+  },
+  "copilot-voice": {
+    title: "VS Code Conversation Mode",
+    image: "thumbnails/goico-sos-thumbnail.png",
+    description: `
+            <p>One of the Gauntlet challenges was called the "1,000,000 challenge": fork an open source repo with over one million lines of code and ship a real feature inside it using AI-assisted development with Cursor. The repo I picked was <code>microsoft/vscode</code> itself.</p>
+            <p>VS Code already had a Copilot Voice feature — you could speak a command and Copilot would act on it. But it was one-directional. You talk, it acts, done. I wanted to make it feel more like an actual conversation: Copilot speaks its response back to you, then listens for your next input automatically, looping until you're finished.</p>
+            <p>Navigating a codebase of that scale is a different beast entirely. Finding the right files, understanding the architecture, figuring out where to hook in without breaking anything — that was most of the challenge. The actual feature took about a day and a half, working entirely in TypeScript inside the VS Code source.</p>
+        `,
+    tech: ["TypeScript"],
+    techTypes: ["frontend"],
+    github: "https://github.com/VictorGoic0/vscode-gauntlet",
+    live: null,
+  },
+  "dep-viz": {
+    title: "Architecture Visualizer",
+    image: "thumbnails/goico-sos-thumbnail.png",
+    description: `
+            <p>I'd never built a VS Code extension before. I'd also never used D3.js. So I built this over a day and a half, mostly to learn both at the same time.</p>
+            <p>Architecture Visualizer maps the dependency graph of your codebase directly inside VS Code. Click any file and see what it imports and which other files depend on it. For smaller projects that's a simple list view. For larger repos, it switches into "galaxy mode" — a full canvas-based D3 visualization where files become nodes, dependencies become edges, and the whole thing is interactive and zoomable. It looks genuinely cool on a big codebase.</p>
+            <p>Getting the VS Code extension tooling set up for live local testing was its own learning curve. Worth it though — by the end I had a solid mental model of how VS Code extensions are structured, how the webview API works, and how to get D3 rendering inside a sandboxed extension context.</p>
+        `,
+    tech: ["TypeScript", "D3.js"],
+    techTypes: ["frontend", "other"],
+    github: "https://github.com/VictorGoic0",
+    live: null,
+  },
   "instagram-clone": {
     title: "Instagram Clone",
     image: "images/InstaPage.png",
